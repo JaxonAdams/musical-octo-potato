@@ -1,0 +1,19 @@
+{
+  "name": "musical-octo-potato",
+  "version": "1.0.0",
+  "description": "A calendar app built with the MERN stack.",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaxonAdams/musical-octo-potato.git"
+  },
+  "author": "Jaxon Adams",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JaxonAdams/musical-octo-potato/issues"
+  },
+  "homepage": "https://github.com/JaxonAdams/musical-octo-potato#readme"
+}
