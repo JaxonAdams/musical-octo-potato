@@ -31,3 +31,22 @@ body, html {
   padding: 1rem;
 }
 /* end header styling */
+
+/* calendar styling */
+.month-select {
+  width: 30vw;
+  margin: 1rem auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.month-select-child {
+  font-size: 1.5rem;
+}
+
+.arrow-container {
+  cursor: pointer;
+}
+/* end calendar styling */
