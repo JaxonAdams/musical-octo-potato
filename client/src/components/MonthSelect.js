@@ -44,7 +44,7 @@ const MonthSelect = () => {
             <div className='arrow-container' onClick={decrementMonth}>
                 <ArrowLeft className='month-select-child' />
             </div>
-            <p className='month month-select-child'>{monthArr[monthIndex]}</p>
+            <p className='month-select-child'>{monthArr[monthIndex]}</p>
             <div className='arrow-container' onClick={incrementMonth}>
                 <ArrowRight className='month-select-child' />
             </div>

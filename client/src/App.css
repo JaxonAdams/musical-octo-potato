@@ -33,6 +33,12 @@ body, html {
 /* end header styling */
 
 /* calendar styling */
+.calendar {
+  width: 80vw;
+  margin: 0 auto;
+  display: block;
+}
+
 .month-select {
   width: 30vw;
   margin: 1rem auto;
@@ -49,5 +55,30 @@ body, html {
 
 .arrow-container {
   cursor: pointer;
+}
+
+.day-card {
+  width: 80%;
+  margin: 0.5rem auto;
+  border-radius: 18px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: var(--background-secondary);
+  color: var(--background-primary);
+  cursor: pointer;
+}
+
+.day-number {
+  font-size: 2rem;
+}
+
+.day-header {
+  font-style: italic;
+}
+
+.day-number, .day-header {
+  margin-left: 1.5rem;
 }
 /* end calendar styling */
