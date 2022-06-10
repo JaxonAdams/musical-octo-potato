@@ -3,7 +3,7 @@
   --background-secondary: #3D405B;
   --color-primary: #E07A5F;
   --color-secondary: #81B29A;
-  --color-tertiary: #F2CC8F;
+  --color-tertiary: #0caaaf;
 }
 
 body, html {
@@ -57,6 +57,18 @@ body, html {
   cursor: pointer;
 }
 
+.month {
+  height: 70vh;
+  overflow: auto;
+  border: 16px solid var(--color-tertiary);
+  border-radius: 18px;
+  margin-bottom: 1.5rem;
+}
+
+.month::-webkit-scrollbar {
+  display: none;
+}
+
 .day-card {
   width: 80%;
   margin: 0.5rem auto;
@@ -68,6 +80,12 @@ body, html {
   background-color: var(--background-secondary);
   color: var(--background-primary);
   cursor: pointer;
+  transition: all 0.5s ease-out;
+}
+
+.day-card:hover {
+  background-color: var(--color-secondary);
+  color: black;
 }
 
 .day-number {
@@ -80,5 +98,10 @@ body, html {
 
 .day-number, .day-header {
   margin-left: 1.5rem;
+  transition: all 0.3s ease-out;
+}
+
+.day-card:hover .day-number, .day-card:hover .day-header {
+  transform: translateX(20vw);
 }
 /* end calendar styling */

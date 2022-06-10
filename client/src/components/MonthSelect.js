@@ -1,26 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ArrowRight, ArrowLeft } from 'react-bootstrap-icons';
 
-const MonthSelect = () => {
-    const monthArr = [
-        'January', 
-        'February', 
-        'March', 
-        'April', 
-        'May', 
-        'June', 
-        'July', 
-        'August', 
-        'September', 
-        'October', 
-        'November', 
-        'December'
-    ];
-
-    const currentDate = new Date();
-
-    let [monthIndex, setMonthIndex] = useState(currentDate.getMonth());
-
+const MonthSelect = ({ monthArr, monthIndex, setMonthIndex }) => {
     const incrementMonth = () => {
         monthIndex++
         if (monthIndex >= monthArr.length) {
