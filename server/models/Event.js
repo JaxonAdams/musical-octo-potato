@@ -10,12 +10,17 @@ const eventSchema = new Schema(
             type: String
         },
         eventDate: {
+            // number date in month
             type: Number,
             required: true
         },
         eventMonth: {
-            type: String,
+            // 0 indexed; 0-11
+            type: Number,
             required: true
+        },
+        eventTime: {
+            type: String
         }
     }
 );
