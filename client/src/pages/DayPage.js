@@ -99,7 +99,7 @@ const DayPage = () => {
     };
 
     return (
-        <div className='day-page'>
+        <div className={`day-page ${showAddModal && 'no-scroll'} ${showEditModal && 'no-scroll'}`}>
             <Header />
             <h1 className='day-page-title'>{monthArr[month]} {day}, {currentYear}</h1>
             <Modal showAddModal={showAddModal} setShowAddModal={setShowAddModal}>

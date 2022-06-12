@@ -266,6 +266,10 @@ body, html {
   display: none;
 }
 
+.no-scroll {
+  overflow-y: hidden;
+}
+
 .close {
   float: left;
   padding: 0.8rem;
