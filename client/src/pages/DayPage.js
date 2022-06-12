@@ -76,32 +76,54 @@ const DayPage = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [showAddModal]);
 
+    const handleEdit = (event) => {
+        console.log(event._id);
+    };
+
+    const handleDelete = (event) => {
+        axios.delete(`/api/events/${event._id}`)
+        .then(() => {
+            axios.get('/api/events').then(response => {
+                const filteredList = response.data.filter(
+                    event => event.eventMonth.toString() === month && event.eventDate.toString() === day
+                );
+                const sortedList = sortEventList(filteredList);
+                setEventList(sortedList);
+            });
+        });
+    };
+
     return (
         <div className='day-page'>
             <Header />
             <h1 className='day-page-title'>{monthArr[month]} {day}, {currentYear}</h1>
+            <Modal showAddModal={showAddModal} setShowAddModal={setShowAddModal}>
+                <h3 className='modal-title'>Add an Event</h3>
+                <AddEventForm setShowAddModal={setShowAddModal} />
+            </Modal>
             {eventList.length ? (
                 <div className='event-list'>
                     <button onClick={() => setShowAddModal(true)} className='add-event-modal-btn'>Add Event</button>
-                    <Modal showAddModal={showAddModal} setShowAddModal={setShowAddModal}>
-                        <h3 className='modal-title'>Add an Event</h3>
-                        <AddEventForm setShowAddModal={setShowAddModal} />
-                    </Modal>
                     <h2>Here's what you have planned...</h2>
                     {eventList.map(event => (
-                        <div className='day-card event-card' key={event._id}>
-                            <p className='event-time'>{event.eventTime}:</p>
-                            <p className='event-name'>{event.eventName}</p>
+                        <div className='event-list-item' key={event._id} idvalue={event._id}>
+                            <div className='day-card event-card'>
+                                <div className='txt-container'>
+                                    <p className='event-time'>{event.eventTime}:</p>
+                                    <p className='event-name'>{event.eventName}</p>
+                                    {event.eventDetails && <p className='event-description'>({event.eventDetails})</p>}
+                                </div>
+                                <div className='btn-container'>
+                                    <button className='edit-event' onClick={() => handleEdit(event)}>Edit</button>
+                                    <button className='delete-event' onClick={() => handleDelete(event)}>Delete</button>
+                                </div>
+                            </div>
                         </div>
                     ))}
                 </div>
             ) : (
                 <div className='event-list'>
                     <button onClick={() => setShowAddModal(true)} className='add-event-modal-btn'>Add Event</button>
-                    <Modal showAddModal={showAddModal} setShowAddModal={setShowAddModal}>
-                        <h3 className='modal-title'>Add an Event</h3>
-                        <AddEventForm setShowAddModal={setShowAddModal} />
-                    </Modal>
                     <h2>You don't have any plans yet!</h2>
                 </div>
             )}
