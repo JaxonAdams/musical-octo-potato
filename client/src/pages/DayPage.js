@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { Pencil } from 'react-bootstrap-icons';
 
 import Header from '../components/Header';
 import Modal from '../components/Modal';
 import AddEventForm from '../components/AddEventForm';
+import UpdateEventForm from '../components/UpdateEventForm';
 
 const DayPage = () => {
     const { month, day } = useParams();
@@ -26,6 +28,8 @@ const DayPage = () => {
     const [eventList, setEventList] = useState([]);
     
     const [showAddModal, setShowAddModal] = useState(false);
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [currentEvent, setCurrentEvent] = useState({});
 
     const sortEventList = eventList => {
         // put AM events before PM events
@@ -74,10 +78,11 @@ const DayPage = () => {
             setEventList(sortedList);
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [showAddModal]);
+    }, [showAddModal, showEditModal]);
 
     const handleEdit = (event) => {
-        console.log(event._id);
+        setCurrentEvent(event);
+        setShowEditModal(true);
     };
 
     const handleDelete = (event) => {
@@ -100,6 +105,10 @@ const DayPage = () => {
             <Modal showAddModal={showAddModal} setShowAddModal={setShowAddModal}>
                 <h3 className='modal-title'>Add an Event</h3>
                 <AddEventForm setShowAddModal={setShowAddModal} />
+            </Modal>
+            <Modal showAddModal={showEditModal} setShowAddModal={setShowEditModal}>
+                <h3 className='modal-title'><Pencil /> {currentEvent.eventName}</h3>
+                <UpdateEventForm eventId={currentEvent._id} setShowEditModal={setShowEditModal} />
             </Modal>
             {eventList.length ? (
                 <div className='event-list'>

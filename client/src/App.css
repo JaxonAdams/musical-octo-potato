@@ -283,7 +283,7 @@ body, html {
   margin: 2rem auto;
 }
 
-.add-event-form {
+.add-event-form, .edit-event-form {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -298,6 +298,11 @@ body, html {
 
 .error-message {
   color: tomato;
+}
+
+.extra-info {
+  font-size: 1rem;
+  font-style: italic;
 }
 /* end day page styling */
 
