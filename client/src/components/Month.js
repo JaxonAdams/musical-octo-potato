@@ -30,7 +30,7 @@ const Month = ({ monthArr, monthIndex }) => {
                     dayName = 'Saturday';
                 }
 
-                return <Day number={day} day={dayName} key={day} />;
+                return <Day number={day} month={monthIndex} day={dayName} key={day} />;
             })}
         </div>
     );

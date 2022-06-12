@@ -9,13 +9,13 @@ const eventSchema = new Schema(
         eventDetails: {
             type: String
         },
-        eventDate: {
-            // number date in month
+        eventMonth: {
+            // 0 indexed; 0-11
             type: Number,
             required: true
         },
-        eventMonth: {
-            // 0 indexed; 0-11
+        eventDate: {
+            // number date in month
             type: Number,
             required: true
         },
