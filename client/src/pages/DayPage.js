@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import Header from '../components/Header';
 import Modal from '../components/Modal';
+import AddEventForm from '../components/AddEventForm';
 
 const DayPage = () => {
     const { month, day } = useParams();
@@ -32,19 +33,31 @@ const DayPage = () => {
         let am = [];
         let pm = [];
         for (let i = 0; i < eventList.length; i++) {
-            if (eventList[i].eventTime.split(' ')[1] === 'AM') {
+            if (eventList[i].eventTime.split(' ')[1] === 'AM' || eventList[i].eventTime.split(' ')[1] === 'am') {
                 am.push(eventList[i]);
-            } else if (eventList[i].eventTime.split(' ')[1] === 'PM') {
+            } else if (eventList[i].eventTime.split(' ')[1] === 'PM' || eventList[i].eventTime.split(' ')[1] === 'pm') {
                 pm.push(eventList[i]);
             }
         }
         // split and sort hours and seconds
         for(let i = 0; i < am.length; i++) {
             am[i].time = am[i].eventTime.split(' ')[0].split(':').join('');
+            if (am[i].eventTime.split(':')[0] === '12') {
+                am[i].time = am[i].time.split('');
+                am[i].time.shift();
+                am[i].time.shift();
+                am[i].time = am[i].time.join('');
+            }
         }
         am.sort((a, b) => a.time - b.time);
         for(let i = 0; i < pm.length; i++) {
             pm[i].time = pm[i].eventTime.split(' ')[0].split(':').join('');
+            if (pm[i].eventTime.split(':')[0] === '12') {
+                pm[i].time = pm[i].time.split('');
+                pm[i].time.shift();
+                pm[i].time.shift();
+                pm[i].time = pm[i].time.join('');
+            }
         }
         pm.sort((a, b) => a.time - b.time);
 
@@ -61,7 +74,7 @@ const DayPage = () => {
             setEventList(sortedList);
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [showAddModal]);
 
     return (
         <div className='day-page'>
@@ -72,7 +85,7 @@ const DayPage = () => {
                     <button onClick={() => setShowAddModal(true)} className='add-event-modal-btn'>Add Event</button>
                     <Modal showAddModal={showAddModal} setShowAddModal={setShowAddModal}>
                         <h3 className='modal-title'>Add an Event</h3>
-                        {/* implement form component here  */}
+                        <AddEventForm setShowAddModal={setShowAddModal} />
                     </Modal>
                     <h2>Here's what you have planned...</h2>
                     {eventList.map(event => (
@@ -86,7 +99,8 @@ const DayPage = () => {
                 <div className='event-list'>
                     <button onClick={() => setShowAddModal(true)} className='add-event-modal-btn'>Add Event</button>
                     <Modal showAddModal={showAddModal} setShowAddModal={setShowAddModal}>
-                        <p>Testing a modal</p>
+                        <h3 className='modal-title'>Add an Event</h3>
+                        <AddEventForm setShowAddModal={setShowAddModal} />
                     </Modal>
                     <h2>You don't have any plans yet!</h2>
                 </div>
