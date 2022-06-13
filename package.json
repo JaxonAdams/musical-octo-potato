@@ -4,9 +4,11 @@
   "description": "A calendar app built with the MERN stack.",
   "main": "server/server.js",
   "scripts": {
+    "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "npm install && cd client && npm install && cd ../server && npm install",
-    "develop": "concurrently \"cd client && npm start\" \"cd server && npm run watch\""
+    "install": "cd client && npm install && cd ../server && npm install",
+    "develop": "concurrently \"cd client && npm start\" \"cd server && npm run watch\"",
+    "build": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
