@@ -4,7 +4,7 @@
   "description": "A calendar app built with the MERN stack.",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "vercel dev",
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "cd client && npm install && cd ../server && npm install",
     "develop": "concurrently \"cd client && npm start\" \"cd server && npm run watch\"",
